@@ -368,33 +368,3 @@ footer a {
     transition: color 0.3s ease;
 }
 footer a:hover { color: var(--mchs-orange); }
-
-/* =========================================
-   9. ТЕМНАЯ ТЕМА (Адаптация)
-   ========================================= */
-[data-bs-theme="dark"] {
-    --mchs-light: #121212;
-    --mchs-white: #1e1e1e;
-    --bs-body-color: #e0e0e0;
-}
-
-[data-bs-theme="dark"] body {
-    color: #e0e0e0;
-}
-
-[data-bs-theme="dark"] .stat-box,
-[data-bs-theme="dark"] .structure-card,
-[data-bs-theme="dark"] .card,
-[data-bs-theme="dark"] .tab-content,
-[data-bs-theme="dark"] .accordion-item {
-    background-color: var(--mchs-white) !important;
-    color: #e0e0e0;
-}
-
-[data-bs-theme="dark"] .text-muted { color: #a0a0a0 !important; }
-[data-bs-theme="dark"] .breadcrumb-item a { color: #66b2ff !important; }
-[data-bs-theme="dark"] .structure-title,
-[data-bs-theme="dark"] .card-title { color: #ffffff !important; }
-[data-bs-theme="dark"] .structure-desc { color: #cccccc; }
-[data-bs-theme="dark"] .bg-white { background-color: var(--mchs-white) !important; }
-[data-bs-theme="dark"] .bg-light { background-color: #121212 !important; }
