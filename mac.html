@@ -6,75 +6,30 @@
     <title>ГКУ «МАЦ» — Спасатели Москвы</title>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
-    <!-- Уникальные стили для МАЦ (Оранжевая тема) -->
     <style>
-        /* Основные цвета МАЦ */
-        :root { 
-            --theme-color: #E67E22; /* Яркий оранжевый */
-            --theme-dark: #CA6F1E; 
-        }
+        :root { --theme-color: #E67E22; --theme-dark: #CA6F1E; }
+        h2.fw-bold::after { background: var(--theme-color) !important; }
+        .btn-huge { padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; border-radius: 50px; box-shadow: 0 8px 15px rgba(230, 126, 34, 0.3); transition: all 0.3s ease; }
+        .btn-huge:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(230, 126, 34, 0.4); }
+        .btn-theme { background-color: var(--theme-color); border-color: var(--theme-color); color: white; }
+        .btn-theme:hover { background-color: var(--theme-dark); border-color: var(--theme-dark); color: white; }
+        .theme-table th { background-color: var(--theme-color) !important; color: white; font-size: 1.1rem; }
+        .theme-table td { font-size: 1.05rem; padding: 1rem; }
+        .display-2 { font-weight: 900; letter-spacing: -1px; }
         
-        /* Сплошное оранжевое подчеркивание */
-        h2.fw-bold::after { 
-            background: var(--theme-color) !important; 
-        }
-        
-        /* Увеличенные кнопки с тенями и анимацией */
-        .btn-huge {
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            box-shadow: 0 8px 15px rgba(230, 126, 34, 0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-huge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(230, 126, 34, 0.4);
-        }
-        
-        /* Цвета для кнопок */
-        .btn-theme {
-            background-color: var(--theme-color);
-            border-color: var(--theme-color);
-            color: white;
-        }
-        .btn-theme:hover {
-            background-color: var(--theme-dark);
-            border-color: var(--theme-dark);
-            color: white;
-        }
-        
-        /* Стили для таблицы */
-        .theme-table th { 
-            background-color: var(--theme-color) !important; 
-            color: white; 
-            font-size: 1.1rem;
-        }
-        .theme-table td {
-            font-size: 1.05rem;
-            padding: 1rem;
-        }
-        
-        /* Огромный шрифт для заголовка */
-        .display-2 {
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
+        /* Адаптация под темную тему */
+        [data-bs-theme="dark"] .bg-white { background-color: #1e1e1e !important; }
+        [data-bs-theme="dark"] .bg-light { background-color: #121212 !important; }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
     <div class="mchs-top-line"></div>
 
-    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="images/logo.png" alt="Логотип" class="navbar-logo">
-                Спасатели Москвы
+                <img src="images/logo.png" alt="Логотип" class="navbar-logo"> Спасатели Москвы
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -86,13 +41,12 @@
                     <li class="nav-item"><a class="nav-link" href="history.html">История</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
                 </ul>
+                <button id="themeToggle" class="btn btn-outline-light ms-lg-3 mt-3 mt-lg-0" type="button">🌙</button>
             </div>
         </div>
     </nav>
 
     <main class="flex-grow-1">
-        
-        <!-- Верхний блок с огромным заголовком и эмблемой -->
         <section class="py-5 mt-4">
             <div class="container">
                 <nav aria-label="breadcrumb" class="mb-5">
@@ -102,45 +56,38 @@
                         <li class="breadcrumb-item active" aria-current="page">ГКУ «МАЦ»</li>
                     </ol>
                 </nav>
-
                 <div class="row g-5 align-items-center">
                     <div class="col-12 col-lg-6">
                         <span class="badge rounded-pill mb-4 px-4 py-3 fs-5 shadow-sm" style="background-color: var(--theme-color);">Авиация</span>
                         <h1 class="display-2 mb-4" style="color: var(--theme-color);">ГКУ «МАЦ»</h1>
                         <p class="lead fs-3 text-muted mb-5">Московский авиационный центр — воздушная скорая помощь и пожарная охрана столицы.</p>
-                        
                         <div class="d-flex gap-3 mb-5 flex-wrap">
                             <a href="order.html" class="btn btn-theme btn-huge">Задать вопрос</a>
                             <a href="catalog.html" class="btn btn-outline-dark btn-huge" style="border-width: 2px;">В каталог</a>
                         </div>
                     </div>
-                    
-                    <!-- Блок с эмблемой (без обрезки) -->
                     <div class="col-12 col-lg-6">
-                        <div class="card shadow-lg border-0 d-flex align-items-center justify-content-center" 
-                             style="border-radius: 30px; overflow: hidden; background-color: #ffffff; height: 500px; padding: 40px;">
-                            <img src="images/cat2.jpg" alt="Московский авиационный центр" class="img-fluid" style="max-height: 100%; object-fit: contain;">
+                        <div class="card shadow-lg border-0 d-flex align-items-center justify-content-center" style="border-radius: 30px; overflow: hidden; background-color: #ffffff; height: 500px; padding: 40px;">
+                            <img src="images/cat2.jpg" alt="МАЦ" class="img-fluid" style="max-height: 100%; object-fit: contain;">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Блок с описанием -->
         <section class="py-5 bg-white">
             <div class="container py-4">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 text-center">
                         <h2 class="fw-bold mb-4" style="color: var(--theme-color); font-size: 2.5rem;">Воздушная защита столицы</h2>
                         <p class="fs-5 text-muted lh-lg mb-0">
-                            Центр обеспечивает безопасность города уже более 20 лет. В распоряжении МАЦ находятся санитарные и пожарные вертолеты, которые базируются на аэродроме «Остафьево» и вертолетных площадках при крупных городских больницах. Пилоты и спасатели готовы вылететь на место происшествия в любое время суток, добираясь до цели в среднем за 10–15 минут, чтобы оказать экстренную помощь или потушить пожар с воздуха.
+                            Центр обеспечивает безопасность города уже более 20 лет. В распоряжении МАЦ находятся санитарные и пожарные вертолеты, которые базируются на аэродроме «Остафьево» и вертолетных площадках при крупных городских больницах.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Таблица характеристик (масштабная) -->
         <section class="py-5 bg-light mb-5">
             <div class="container">
                 <h2 class="fw-bold mb-5 text-center" style="color: var(--theme-color); font-size: 2.5rem;">Основные факты и цифры</h2>
@@ -148,18 +95,12 @@
                     <div class="col-12 col-lg-10">
                         <div class="table-responsive shadow-lg" style="border-radius: 20px; overflow: hidden;">
                             <table class="table table-striped table-bordered align-middle mb-0 theme-table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 35%;">Параметр</th>
-                                        <th scope="col">Описание</th>
-                                    </tr>
-                                </thead>
+                                <thead><tr><th style="width: 35%;">Параметр</th><th>Описание</th></tr></thead>
                                 <tbody>
                                     <tr><th scope="row">Авиапарк</th><td>11 вертолетов, включая санитарные (ВК117 С-2, Bell-429) и пожарные (Ка-32А, Ми-26Т).</td></tr>
                                     <tr><th scope="row">Личный состав</th><td>Более 400 человек, включая пилотов, спасателей, инженеров и авиадиспетчеров.</td></tr>
-                                    <tr><th scope="row">Медико-санитарная эвакуация</th><td>Эвакуация пострадавших при ДТП, ЧС, а также пациентов с инфарктами и новорожденных.</td></tr>
-                                    <tr><th scope="row">Тушение пожаров</th><td>Вертолеты Ка-32А и Ми-26Т с водосливными устройствами для активного тушения пожаров.</td></tr>
-                                    <tr><th scope="row">Воздушная разведка</th><td>Аэрофотосъемка и мониторинг инфраструктуры для предотвращения аварийных ситуаций.</td></tr>
+                                    <tr><th scope="row">Медико-санитарная эвакуация</th><td>Эвакуация пострадавших при ДТП, ЧС, а также пациентов с инфарктами.</td></tr>
+                                    <tr><th scope="row">Тушение пожаров</th><td>Вертолеты Ка-32А и Ми-26Т с водосливными устройствами.</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -167,27 +108,8 @@
                 </div>
             </div>
         </section>
-
-        <!-- Финальный призыв к действию (Огромный баннер) -->
-        <section class="py-5 mb-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
-                        <div class="card border-0 shadow-lg text-white" style="border-radius: 30px; background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-dark) 100%);">
-                            <div class="card-body p-5 text-center">
-                                <h2 class="display-5 fw-bold mb-4">Есть вопросы о работе авиации?</h2>
-                                <p class="fs-4 mb-5 opacity-75">Свяжитесь с нами, чтобы узнать больше о буднях воздушных спасателей.</p>
-                                <a href="order.html" class="btn btn-light btn-huge text-dark">Написать нам</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Футер -->
     <footer class="mt-auto pt-5 pb-4">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -206,5 +128,23 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Скрипт темы -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            htmlElement.setAttribute('data-bs-theme', savedTheme);
+            updateIcon(savedTheme);
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+            function updateIcon(theme) { themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙'; }
+        });
+    </script>
 </body>
 </html>

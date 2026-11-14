@@ -9,10 +9,8 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Полоса-флаг сверху -->
     <div class="mchs-top-line"></div>
 
-    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -29,14 +27,14 @@
                     <li class="nav-item"><a class="nav-link" href="history.html">История</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
                 </ul>
+                <!-- Кнопка темы -->
+                <button id="themeToggle" class="btn btn-outline-light ms-lg-3 mt-3 mt-lg-0" type="button" title="Сменить тему">🌙</button>
             </div>
         </div>
     </nav>
 
     <main class="flex-grow-1 py-5">
         <div class="container">
-            
-            <!-- Хлебные крошки -->
             <nav aria-label="breadcrumb" class="mb-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color: var(--mchs-blue);">Главная</a></li>
@@ -45,7 +43,6 @@
                 </ol>
             </nav>
 
-            <!-- Описание товара (структуры) -->
             <div class="row g-4 mb-5 align-items-center">
                 <div class="col-12 col-lg-6">
                     <div class="card shadow-sm border-0" style="border-radius: 20px;">
@@ -69,7 +66,6 @@
                 </div>
             </div>
 
-            <!-- Блок стоимости (вместо цены) -->
             <div class="d-flex align-items-center mb-4 p-4 bg-white rounded shadow-sm border-start border-4" style="border-color: var(--mchs-blue) !important;">
                 <div class="me-4" style="color: var(--mchs-blue);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
@@ -83,7 +79,6 @@
                 </div>
             </div>
 
-            <!-- Таблица характеристик -->
             <section class="mb-5">
                 <h2 class="fw-bold mb-4" style="color: var(--mchs-blue);">Характеристики и структура</h2>
                 <div class="table-responsive shadow-sm" style="border-radius: 15px; overflow: hidden;">
@@ -116,7 +111,6 @@
                 </div>
             </section>
 
-            <!-- Дополнительный компонент: Вкладки (Tabs) -->
             <section class="mb-5">
                 <h2 class="fw-bold mb-4" style="color: var(--mchs-blue);">Подробнее о службе</h2>
                 
@@ -144,12 +138,10 @@
                 </div>
             </section>
 
-            <!-- Аккордеон (FAQ) -->
             <section class="mb-5">
                 <h2 class="fw-bold mb-4" style="color: var(--mchs-blue);">Частые вопросы о службе</h2>
                 
                 <div class="accordion shadow-sm" id="faqAccordion" style="border-radius: 15px; overflow: hidden;">
-                    
                     <div class="accordion-item border-0 border-bottom">
                         <h3 class="accordion-header">
                             <button class="accordion-button fw-bold" style="color: var(--mchs-blue);" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
@@ -162,7 +154,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="accordion-item border-0">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed fw-bold" style="color: var(--mchs-blue);" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
@@ -175,14 +166,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
-
         </div>
     </main>
 
-    <!-- Футер -->
     <footer class="mt-auto">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -201,5 +189,27 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Скрипт темы -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            htmlElement.setAttribute('data-bs-theme', savedTheme);
+            updateIcon(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+
+            function updateIcon(theme) {
+                themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        });
+    </script>
 </body>
 </html>
