@@ -89,11 +89,10 @@
                     </div>
                 </div>
 
-                <!-- Правая колонка: Интерактивная карта -->
+                <!-- Правая колонка: Интерактивная карта (Фишка 1) -->
                 <div class="col-12 col-lg-7">
                     <h2 class="h4 fw-bold mb-4" style="color: var(--mchs-blue);">Мы на карте</h2>
                     <div class="card shadow-sm border-0 h-100" style="border-radius: 15px; overflow: hidden;">
-                        <!-- Контейнер ratio-4x3 делает карту адаптивной под размер экрана -->
                         <div class="ratio ratio-4x3">
                             <iframe src="https://yandex.ru/map-widget/v1/?ll=37.556331%2C55.744304&mode=usermaps&um=constructor%3Ac378046dde54df655dbbb9e41446732eb7c2eb604ed27b1ea64587f42f326d0d&z=16" 
                                     frameborder="0" 
@@ -108,7 +107,6 @@
         </div>
     </main>
 
-    <!-- Футер -->
     <footer class="mt-auto">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -127,5 +125,22 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ФИШКА 3: Кнопка "Наверх" -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.createElement('button');
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.className = 'back-to-top';
+            backToTopBtn.title = 'Вернуться наверх';
+            document.body.appendChild(backToTopBtn);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>

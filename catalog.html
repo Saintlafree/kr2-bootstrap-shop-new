@@ -168,6 +168,7 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         function filterCards(category, btn) {
             const cards = document.querySelectorAll('.catalog-card');
@@ -183,6 +184,24 @@
             });
             btn.classList.add('active');
         }
+
+        // ФИШКА 3: Кнопка "Наверх"
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.createElement('button');
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.className = 'back-to-top';
+            backToTopBtn.title = 'Вернуться наверх';
+            document.body.appendChild(backToTopBtn);
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 </html>

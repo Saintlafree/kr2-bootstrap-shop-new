@@ -60,13 +60,11 @@
                                         <input type="text" class="form-control" id="userName" name="name" placeholder="Иван Иванов" required>
                                         <div class="invalid-feedback">Пожалуйста, введите ваше имя.</div>
                                     </div>
-
                                     <div class="col-12 col-md-6">
                                         <label for="userEmail" class="form-label fw-bold">E-mail <span class="text-danger">*</span></label>
                                         <input type="email" class="form-control" id="userEmail" name="email" placeholder="example@mail.ru" required>
                                         <div class="invalid-feedback">Пожалуйста, введите корректный адрес электронной почты.</div>
                                     </div>
-
                                     <div class="col-12 col-md-6">
                                         <label for="userPhone" class="form-label fw-bold">Телефон</label>
                                         <div class="input-group">
@@ -74,7 +72,6 @@
                                             <input type="tel" class="form-control" id="userPhone" name="phone" placeholder="900 000-00-00">
                                         </div>
                                     </div>
-
                                     <div class="col-12 col-md-6">
                                         <label for="userTopic" class="form-label fw-bold">Тема обращения</label>
                                         <select class="form-select" id="userTopic" name="topic">
@@ -85,13 +82,11 @@
                                             <option value="4">Другое</option>
                                         </select>
                                     </div>
-
                                     <div class="col-12">
                                         <label for="userMessage" class="form-label fw-bold">Ваш вопрос <span class="text-danger">*</span></label>
                                         <textarea class="form-control" id="userMessage" name="message" rows="5" placeholder="Напишите ваш вопрос здесь..." required></textarea>
                                         <div class="invalid-feedback">Пожалуйста, напишите ваш вопрос.</div>
                                     </div>
-
                                     <div class="col-12 mt-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="userAgree" name="agree" required>
@@ -101,7 +96,6 @@
                                             <div class="invalid-feedback">Необходимо ваше согласие на обработку данных.</div>
                                         </div>
                                     </div>
-
                                     <div class="col-12 mt-4 d-flex gap-3 flex-wrap">
                                         <button class="btn btn-primary btn-lg px-5" type="submit">Отправить вопрос</button>
                                         <button class="btn btn-outline-secondary btn-lg px-4" type="reset" style="border-radius: 50px;">Очистить</button>
@@ -142,7 +136,6 @@
         (function () {
             'use strict'
             var form = document.getElementById('feedbackForm')
-            
             form.addEventListener('submit', function (event) {
                 if (!form.checkValidity()) {
                     event.preventDefault()
@@ -157,6 +150,21 @@
                 form.classList.add('was-validated')
             }, false)
         })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.createElement('button');
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.className = 'back-to-top';
+            backToTopBtn.title = 'Вернуться наверх';
+            document.body.appendChild(backToTopBtn);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 </html>

@@ -88,22 +88,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Полное наименование</th>
-                                <td>Главное управление МЧС России по г. Москве</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Подчинение</th>
-                                <td>Министерство РФ по делам гражданской обороны, ЧС и ликвидации последствий стихийных бедствий</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Элитные подразделения</th>
-                                <td>Центр по проведению спасательных операций особого риска «Лидер», Отряд Центроспас</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Взаимодействие</th>
-                                <td>Работает в тесной связке с ДГОЧСиПБ (Правительство Москвы)</td>
-                            </tr>
+                            <tr><th scope="row">Полное наименование</th><td>Главное управление МЧС России по г. Москве</td></tr>
+                            <tr><th scope="row">Подчинение</th><td>Министерство РФ по делам гражданской обороны, ЧС и ликвидации последствий стихийных бедствий</td></tr>
+                            <tr><th scope="row">Элитные подразделения</th><td>Центр по проведению спасательных операций особого риска «Лидер», Отряд Центроспас</td></tr>
+                            <tr><th scope="row">Взаимодействие</th><td>Работает в тесной связке с ДГОЧСиПБ (Правительство Москвы)</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -187,5 +175,22 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ФИШКА 3: Кнопка "Наверх" -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.createElement('button');
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.className = 'back-to-top';
+            backToTopBtn.title = 'Вернуться наверх';
+            document.body.appendChild(backToTopBtn);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
