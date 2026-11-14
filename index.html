@@ -51,6 +51,8 @@
     </header>
 
     <main class="flex-grow-1 py-5">
+        
+        <!-- Блок статистики с анимацией (Фишка 2) -->
         <section class="container mb-5 pb-4">
             <div class="text-center mb-5">
                 <h2 class="fw-bold" style="color: var(--mchs-blue);">Служба в цифрах</h2>
@@ -60,18 +62,23 @@
             <div class="row g-4 text-center justify-content-center mb-5">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="stat-box">
-                        <div class="stat-number" style="color: var(--mchs-blue);">около 18 тысяч</div>
+                        <div class="stat-number" style="color: var(--mchs-blue);">
+                            около <span class="counter" data-target="18000">0</span>
+                        </div>
                         <div class="stat-label">Спасателей в гарнизоне</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="stat-box">
-                        <div class="stat-number" style="color: var(--mchs-orange);">более 100</div>
+                        <div class="stat-number" style="color: var(--mchs-orange);">
+                            более <span class="counter" data-target="100">0</span>
+                        </div>
                         <div class="stat-label">Подразделений</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Структура гарнизона -->
             <div class="row g-4 justify-content-center">
                 <div class="col-12 col-lg-10">
                     <h3 class="h4 fw-bold mb-4 text-center" style="color: var(--mchs-blue);">Структура гарнизона</h3>
@@ -109,6 +116,7 @@
             </div>
         </section>
 
+        <!-- Основные направления -->
         <section class="container mb-5 pb-5">
             <div class="d-flex justify-content-between align-items-end mb-4">
                 <div>
@@ -170,5 +178,42 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Скрипт для анимации цифр (Фишка 2) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // Длительность анимации (2 секунды)
+                const stepTime = 20;
+                const steps = duration / stepTime;
+                let current = 0;
+                const increment = target / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.innerText = target.toLocaleString('ru-RU');
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = Math.floor(current).toLocaleString('ru-RU');
+                    }
+                }, stepTime);
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        });
+    </script>
 </body>
 </html>
