@@ -25,10 +25,26 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .stat-number, .structure-num {
     letter-spacing: -0.5px;
 }
 
+/* --- ПОЛОСА С ДЕВИЗОМ --- */
 .mchs-top-line {
-    height: 30px; 
+    height: 40px;
     width: 100%;
-    background: linear-gradient(to bottom, var(--mchs-orange) 0%, var(--mchs-orange) 33.33%, var(--mchs-blue) 33.33%, var(--mchs-blue) 66.66%, var(--mchs-orange) 66.66%, var(--mchs-orange) 100%);
+    background: linear-gradient(
+        to bottom,
+        var(--mchs-orange) 0%, var(--mchs-orange) 33.33%,
+        var(--mchs-blue) 33.33%, var(--mchs-blue) 66.66%,
+        var(--mchs-orange) 66.66%, var(--mchs-orange) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 /* --- НАВИГАЦИЯ --- */
@@ -107,3 +123,21 @@ footer a:hover { color: var(--mchs-orange); }
 .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { background-color: var(--mchs-orange); border-color: var(--mchs-blue); transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
 .back-to-top:focus { outline: none; }
+
+/* --- ФИШКА 4: ИНДИКАТОР ПРОКРУТКИ --- */
+.scroll-progress-bar {
+    position: fixed; top: 0; left: 0; height: 6px; width: 0%;
+    background: linear-gradient(to right, var(--mchs-orange), var(--mchs-blue));
+    z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: width 0.1s ease-out;
+}
+
+/* --- ФИШКА 5: АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ ПРОКРУТКЕ --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

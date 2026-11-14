@@ -22,7 +22,8 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <div class="mchs-top-line"></div>
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+    <div class="mchs-top-line">Предотвращение &bull; Спасение &bull; Помощь</div>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
         <div class="container">
@@ -46,14 +47,14 @@
     <main class="flex-grow-1">
         <section class="py-5 mt-4">
             <div class="container">
-                <nav aria-label="breadcrumb" class="mb-5">
+                <nav aria-label="breadcrumb" class="mb-5 reveal">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color: var(--theme-color);">Главная</a></li>
                         <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none" style="color: var(--theme-color);">Направления</a></li>
                         <li class="breadcrumb-item active" aria-current="page">ГКУ «ПСЦ»</li>
                     </ol>
                 </nav>
-                <div class="row g-5 align-items-center">
+                <div class="row g-5 align-items-center reveal">
                     <div class="col-12 col-lg-6">
                         <span class="badge rounded-pill mb-4 px-4 py-3 fs-5 shadow-sm" style="background-color: var(--theme-color);">Городские службы</span>
                         <h1 class="display-2 mb-4" style="color: var(--theme-color);">ГКУ «ПСЦ»</h1>
@@ -72,7 +73,7 @@
             </div>
         </section>
 
-        <section class="py-5 bg-white">
+        <section class="py-5 bg-white reveal">
             <div class="container py-4">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 text-center">
@@ -85,7 +86,7 @@
             </div>
         </section>
 
-        <section class="py-5 mb-5">
+        <section class="py-5 mb-5 reveal">
             <div class="container">
                 <h2 class="fw-bold mb-5 text-center" style="color: var(--theme-color); font-size: 2.5rem;">Из будней службы</h2>
                 <div class="row g-4">
@@ -96,7 +97,7 @@
             </div>
         </section>
 
-        <section class="py-5 bg-light mb-5">
+        <section class="py-5 bg-light mb-5 reveal">
             <div class="container">
                 <h2 class="fw-bold mb-5 text-center" style="color: var(--theme-color); font-size: 2.5rem;">Основные факты и цифры</h2>
                 <div class="row justify-content-center">
@@ -117,7 +118,7 @@
             </div>
         </section>
 
-        <section class="py-5 mb-5">
+        <section class="py-5 mb-5 reveal">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10">
@@ -152,7 +153,6 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ФИШКА 3: Кнопка "Наверх" -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const backToTopBtn = document.createElement('button');
@@ -167,6 +167,24 @@
             backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            const progressBar = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>

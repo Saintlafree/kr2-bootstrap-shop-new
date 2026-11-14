@@ -9,7 +9,11 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <div class="mchs-top-line"></div>
+    <!-- Индикатор прокрутки -->
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+    <!-- Верхняя полоса с девизом -->
+    <div class="mchs-top-line">Предотвращение &bull; Спасение &bull; Помощь</div>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
@@ -33,14 +37,14 @@
 
     <main class="flex-grow-1 py-5 bg-light">
         <div class="container">
-            <nav aria-label="breadcrumb" class="mb-4">
+            <nav aria-label="breadcrumb" class="mb-4 reveal">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color: var(--mchs-blue);">Главная</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Задать вопрос</li>
                 </ol>
             </nav>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center reveal">
                 <div class="col-12 col-lg-8">
                     <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
                         <div class="card-header text-white text-center py-4" style="background-color: var(--mchs-blue); border-bottom: 4px solid var(--mchs-orange);">
@@ -133,6 +137,7 @@
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Фишка: Валидация формы
         (function () {
             'use strict'
             var form = document.getElementById('feedbackForm')
@@ -152,6 +157,7 @@
         })();
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Фишка 3: Кнопка наверх
             const backToTopBtn = document.createElement('button');
             backToTopBtn.innerHTML = '↑';
             backToTopBtn.className = 'back-to-top';
@@ -164,6 +170,27 @@
             backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            // Фишка 4: Индикатор прокрутки
+            const progressBar = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+
+            // Фишка 5: Анимация появления (Scroll Reveal)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>

@@ -9,7 +9,9 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <div class="mchs-top-line"></div>
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+    <div class="mchs-top-line">Предотвращение &bull; Спасение &bull; Помощь</div>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
@@ -51,14 +53,13 @@
     </header>
 
     <main class="flex-grow-1 py-5">
-        <!-- Блок статистики с анимацией -->
         <section class="container mb-5 pb-4">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 reveal">
                 <h2 class="fw-bold" style="color: var(--mchs-blue);">Служба в цифрах</h2>
                 <p class="text-muted">Актуальные данные о московском пожарно-спасательном гарнизоне</p>
             </div>
             
-            <div class="row g-4 text-center justify-content-center mb-5">
+            <div class="row g-4 text-center justify-content-center mb-5 reveal">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="stat-box">
                         <div class="stat-number" style="color: var(--mchs-blue);">
@@ -78,7 +79,7 @@
             </div>
 
             <div class="row g-4 justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12 col-lg-10 reveal">
                     <h3 class="h4 fw-bold mb-4 text-center" style="color: var(--mchs-blue);">Структура гарнизона</h3>
                     <div class="row g-4">
                         <div class="col-12 col-md-6">
@@ -115,14 +116,14 @@
         </section>
 
         <section class="container mb-5 pb-5">
-            <div class="d-flex justify-content-between align-items-end mb-4">
+            <div class="d-flex justify-content-between align-items-end mb-4 reveal">
                 <div>
                     <h2 class="fw-bold mb-1" style="color: var(--mchs-blue);">Основные направления</h2>
                     <p class="text-muted mb-0">Ключевые структуры московского гарнизона</p>
                 </div>
             </div>
             <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 reveal">
                     <div class="card h-100">
                         <div class="card-img-wrapper" style="height: 250px;">
                             <img src="images/dgochspb.jpg" alt="Департамент ГО ЧС и ПБ Москвы">
@@ -138,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 reveal">
                     <div class="card h-100">
                         <div class="card-img-wrapper" style="height: 250px;">
                             <img src="images/cat4.jpg" alt="Главное управление МЧС России по г. Москве">
@@ -175,10 +176,9 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- ФИШКА 2: Анимированные цифры -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // Фишка 2: Анимация цифр
             const counters = document.querySelectorAll('.counter');
             const animateCounter = (counter) => {
                 const target = +counter.getAttribute('data-target');
@@ -197,7 +197,7 @@
                     }
                 }, stepTime);
             };
-            const observer = new IntersectionObserver((entries, observer) => {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         animateCounter(entry.target);
@@ -205,27 +205,42 @@
                     }
                 });
             }, { threshold: 0.5 });
-            counters.forEach(counter => observer.observe(counter));
-        });
-    </script>
+            counters.forEach(counter => counterObserver.observe(counter));
 
-    <!-- ФИШКА 3: Кнопка "Наверх" -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            // Фишка 3: Кнопка наверх
             const backToTopBtn = document.createElement('button');
             backToTopBtn.innerHTML = '↑';
             backToTopBtn.className = 'back-to-top';
             backToTopBtn.title = 'Вернуться наверх';
             document.body.appendChild(backToTopBtn);
-
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 400) backToTopBtn.classList.add('show');
                 else backToTopBtn.classList.remove('show');
             });
-
             backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            // Фишка 4: Индикатор прокрутки
+            const progressBar = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+
+            // Фишка 5: Анимация появления (Scroll Reveal)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>

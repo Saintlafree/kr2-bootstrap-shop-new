@@ -9,7 +9,11 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <div class="mchs-top-line"></div>
+    <!-- Индикатор прокрутки -->
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+    <!-- Верхняя полоса с девизом -->
+    <div class="mchs-top-line">Предотвращение &bull; Спасение &bull; Помощь</div>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
@@ -33,12 +37,12 @@
 
     <main class="flex-grow-1 py-5">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 reveal">
                 <h1 class="fw-bold" style="color: var(--mchs-blue);">Все направления</h1>
                 <p class="text-muted">Структуры, обеспечивающие безопасность столицы</p>
             </div>
 
-            <div class="alert alert-info d-flex flex-column flex-md-row justify-content-between align-items-md-center shadow-sm rounded-4 mb-5 p-4" role="alert" style="border-left: 6px solid var(--mchs-blue); background-color: #e0f2fe;">
+            <div class="alert alert-info d-flex flex-column flex-md-row justify-content-between align-items-md-center shadow-sm rounded-4 mb-5 p-4 reveal" role="alert" style="border-left: 6px solid var(--mchs-blue); background-color: #e0f2fe;">
                 <div class="mb-3 mb-md-0 pe-md-4">
                     <h4 class="alert-heading fw-bold mb-2" style="color: var(--mchs-blue);">Как устроена система безопасности столицы?</h4>
                     <p class="mb-0">Интересно, чем отличается федеральное <strong>МЧС России</strong> от московского <strong>ДГОЧСиПБ</strong> и как они работают вместе? Нажмите, чтобы узнать.</p>
@@ -48,14 +52,14 @@
                 </button>
             </div>
 
-            <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+            <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap reveal">
                 <button class="btn btn-outline-primary active" onclick="filterCards('all', this)">Все</button>
                 <button class="btn btn-outline-primary" onclick="filterCards('city', this)">Городские</button>
                 <button class="btn btn-outline-primary" onclick="filterCards('federal', this)">Федеральные</button>
             </div>
 
             <div class="row g-4 mb-5 justify-content-center">
-                <div class="col-12 col-md-6 col-lg-4 catalog-card" data-category="city">
+                <div class="col-12 col-md-6 col-lg-4 catalog-card reveal" data-category="city">
                     <div class="card h-100">
                         <div class="card-img-wrapper">
                             <img src="images/cat1.jpg" alt="Пожарно-спасательный центр">
@@ -71,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 catalog-card" data-category="city">
+                <div class="col-12 col-md-6 col-lg-4 catalog-card reveal" data-category="city">
                     <div class="card h-100">
                         <div class="card-img-wrapper">
                             <img src="images/cat2.jpg" alt="Московский авиационный центр">
@@ -87,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 catalog-card" data-category="city">
+                <div class="col-12 col-md-6 col-lg-4 catalog-card reveal" data-category="city">
                     <div class="card h-100">
                         <div class="card-img-wrapper">
                             <img src="images/cat3.jpg" alt="Московская городская поисково-спасательная служба">
@@ -104,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="position-relative my-5">
+            <div class="position-relative my-5 reveal">
                 <hr style="border: 0; height: 4px; background: linear-gradient(to right, var(--mchs-orange) 0%, var(--mchs-blue) 50%, var(--mchs-orange) 100%); opacity: 0.8; border-radius: 4px; margin: 0;">
                 <div class="position-absolute top-50 start-50 translate-middle bg-light px-3">
                     <span class="text-muted fw-bold text-uppercase small">Федеральные структуры</span>
@@ -112,7 +116,7 @@
             </div>
 
             <div class="row justify-content-center mb-5" id="mchs">
-                <div class="col-12 col-lg-8 catalog-card" data-category="federal">
+                <div class="col-12 col-lg-8 catalog-card reveal" data-category="federal">
                     <div class="card h-100">
                         <div class="card-img-wrapper" style="height: 250px;">
                             <img src="images/cat4.jpg" alt="Главное управление МЧС России">
@@ -168,8 +172,8 @@
     </footer>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
     <script>
+        // Фишка: Фильтры
         function filterCards(category, btn) {
             const cards = document.querySelectorAll('.catalog-card');
             cards.forEach(card => {
@@ -185,22 +189,41 @@
             btn.classList.add('active');
         }
 
-        // ФИШКА 3: Кнопка "Наверх"
         document.addEventListener('DOMContentLoaded', () => {
+            // Фишка 3: Кнопка наверх
             const backToTopBtn = document.createElement('button');
             backToTopBtn.innerHTML = '↑';
             backToTopBtn.className = 'back-to-top';
             backToTopBtn.title = 'Вернуться наверх';
             document.body.appendChild(backToTopBtn);
-
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 400) backToTopBtn.classList.add('show');
                 else backToTopBtn.classList.remove('show');
             });
-
             backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            // Фишка 4: Индикатор прокрутки
+            const progressBar = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+
+            // Фишка 5: Анимация появления (Scroll Reveal)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>
