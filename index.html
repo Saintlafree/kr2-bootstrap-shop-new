@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасатели Москвы — Будни столичного гарнизона</title>
+    <!-- Локальный Bootstrap CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <div class="mchs-top-line"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo.png" alt="Логотип" class="navbar-logo">
+                Спасатели Москвы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Направления</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html">История</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-12 col-lg-6 hero-text-animate">
+                    <h1 class="display-3 fw-bold mb-4">Будни столичного гарнизона</h1>
+                    <p class="lead mb-5 opacity-75" style="font-size: 1.2rem;">
+                        Московские спасатели и пожарные ежедневно обеспечивают безопасность более 13 миллионов жителей. Узнайте, как устроена служба изнутри.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="catalog.html" class="btn btn-orange btn-lg">Направления службы</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 text-center hero-img-animate">
+                    <img src="images/hero.jpg" alt="Спасатели Москвы" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow-1 py-5">
+        <section class="container mb-5 pb-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--mchs-blue);">Служба в цифрах</h2>
+                <p class="text-muted">Актуальные данные о московском пожарно-спасательном гарнизоне</p>
+            </div>
+            
+            <div class="row g-4 text-center justify-content-center mb-5">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="stat-box">
+                        <div class="stat-number" style="color: var(--mchs-blue);">около 18 тысяч</div>
+                        <div class="stat-label">Спасателей в гарнизоне</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="stat-box">
+                        <div class="stat-number" style="color: var(--mchs-orange);">более 100</div>
+                        <div class="stat-label">Подразделений</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <h3 class="h4 fw-bold mb-4 text-center" style="color: var(--mchs-blue);">Структура гарнизона</h3>
+                    <div class="row g-4">
+                        <div class="col-12 col-md-6">
+                            <div class="structure-card">
+                                <h4 class="structure-title">ГКУ «ПСЦ»</h4>
+                                <div class="structure-item">
+                                    <div class="structure-num">8</div>
+                                    <div class="structure-desc">АСО <span class="structure-sub">Аварийно-спасательные отряды</span></div>
+                                </div>
+                                <div class="structure-item">
+                                    <div class="structure-num">35+</div>
+                                    <div class="structure-desc">ПСО <span class="structure-sub">Пожарно-спасательные отряды</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="structure-card">
+                                <h4 class="structure-title">ГКУ «МГПСС»</h4>
+                                <div class="structure-item">
+                                    <div class="structure-num">26</div>
+                                    <div class="structure-desc">ПСС <span class="structure-sub">Поисково-спасательные станции на воде</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="structure-card" style="border-left-color: var(--mchs-orange);">
+                                <h4 class="structure-title">ГУ МЧС России по г. Москве</h4>
+                                <p class="text-muted mb-0">Федеральные пожарно-спасательные части (ПСЧ), обеспечивающие безопасность столицы совместно с городскими службами.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mb-5 pb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1" style="color: var(--mchs-blue);">Основные направления</h2>
+                    <p class="text-muted mb-0">Ключевые структуры московского гарнизона</p>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-12 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-img-wrapper" style="height: 250px;">
+                            <img src="images/dgochspb.jpg" alt="Департамент ГО ЧС и ПБ Москвы">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h3 class="card-title h4 fw-bold mb-0" style="color: var(--mchs-blue);">Департамент ГО ЧС и ПБ</h3>
+                                <span class="badge rounded-pill bg-danger px-3 py-2">Городские службы</span>
+                            </div>
+                            <p class="card-text text-muted flex-grow-1"><strong>Департамент по делам гражданской обороны, чрезвычайным ситуациям и пожарной безопасности города Москвы</strong>. Координирует работу городских спасательных служб, включая ГКУ «ПСЦ», ГКУ «МГПСС» и ГКУ «МАЦ».</p>
+                            <a href="catalog.html" class="btn btn-primary mt-3">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-img-wrapper" style="height: 250px;">
+                            <img src="images/cat4.jpg" alt="Главное управление МЧС России по г. Москве">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h3 class="card-title h4 fw-bold mb-0" style="color: var(--mchs-blue);">ГУ МЧС России</h3>
+                                <span class="badge rounded-pill bg-warning text-dark px-3 py-2">Федеральные</span>
+                            </div>
+                            <p class="card-text text-muted flex-grow-1"><strong>МЧС России</strong> — федеральная структура, действующая по всей стране. В Москве её представляет <strong>Главное управление (ГУ) МЧС России по г. Москве</strong>. Включает элитные формирования: Центр «Лидер» и отряд «Центроспас».</p>
+                            <a href="catalog.html#mchs" class="btn btn-primary mt-3">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-auto">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-md-6">
+                    <h5 class="text-white fw-bold mb-2">Спасатели Москвы</h5>
+                    <p class="mb-0 small opacity-75">Информационный проект о буднях столичного гарнизона. Учебная работа (КР №2).</p>
+                </div>
+                <div class="col-12 col-md-6 text-md-end">
+                    <a href="catalog.html" class="me-3">Направления</a>
+                    <a href="contacts.html" class="text-warning">Контакты</a>
+                </div>
+            </div>
+            <hr class="border-secondary mt-4">
+            <div class="text-center small opacity-50">&copy; 2026 Спасатели Москвы. Все данные взяты из открытых источников.</div>
+        </div>
+    </footer>
+
+    <!-- Локальный Bootstrap JS Bundle -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

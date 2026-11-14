@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задать вопрос — Спасатели Москвы</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <div class="mchs-top-line"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo.png" alt="Логотип" class="navbar-logo">
+                Спасатели Москвы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Направления</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html">История</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1 py-5 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color: var(--mchs-blue);">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Задать вопрос</li>
+                </ol>
+            </nav>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-header text-white text-center py-4" style="background-color: var(--mchs-blue); border-bottom: 4px solid var(--mchs-orange);">
+                            <h1 class="h3 fw-bold mb-0">Форма обратной связи</h1>
+                            <p class="mb-0 mt-2 opacity-75">Оставьте свой вопрос, и мы обязательно свяжемся с вами</p>
+                        </div>
+                        
+                        <div class="card-body p-4 p-md-5">
+                            <div class="alert alert-info mb-4" role="alert" style="border-left: 4px solid var(--mchs-blue);">
+                                Поля, отмеченные символом <strong>*</strong>, обязательны для заполнения.
+                            </div>
+
+                            <form id="feedbackForm" class="needs-validation" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="userName" class="form-label fw-bold">Ваше имя <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="userName" name="name" placeholder="Иван Иванов" required>
+                                        <div class="invalid-feedback">Пожалуйста, введите ваше имя.</div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <label for="userEmail" class="form-label fw-bold">E-mail <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="userEmail" name="email" placeholder="example@mail.ru" required>
+                                        <div class="invalid-feedback">Пожалуйста, введите корректный адрес электронной почты.</div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <label for="userPhone" class="form-label fw-bold">Телефон</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white">+7</span>
+                                            <input type="tel" class="form-control" id="userPhone" name="phone" placeholder="900 000-00-00">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <label for="userTopic" class="form-label fw-bold">Тема обращения</label>
+                                        <select class="form-select" id="userTopic" name="topic">
+                                            <option value="" selected disabled>Выберите тему...</option>
+                                            <option value="1">Вопрос по службе в МЧС</option>
+                                            <option value="2">Вопрос по ДГОЧСиПБ</option>
+                                            <option value="3">Предложение о сотрудничестве</option>
+                                            <option value="4">Другое</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="userMessage" class="form-label fw-bold">Ваш вопрос <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="userMessage" name="message" rows="5" placeholder="Напишите ваш вопрос здесь..." required></textarea>
+                                        <div class="invalid-feedback">Пожалуйста, напишите ваш вопрос.</div>
+                                    </div>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="userAgree" name="agree" required>
+                                            <label class="form-check-label text-muted" for="userAgree">
+                                                Я согласен на обработку персональных данных <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="invalid-feedback">Необходимо ваше согласие на обработку данных.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 mt-4 d-flex gap-3 flex-wrap">
+                                        <button class="btn btn-primary btn-lg px-5" type="submit">Отправить вопрос</button>
+                                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset" style="border-radius: 50px;">Очистить</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="successMessage" class="alert alert-success mt-4 d-none" role="alert">
+                                <h4 class="alert-heading fw-bold">Спасибо!</h4>
+                                <p class="mb-0">Ваш вопрос успешно отправлен. Мы свяжемся с вами в ближайшее время.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-md-6">
+                    <h5 class="text-white fw-bold mb-2">Спасатели Москвы</h5>
+                    <p class="mb-0 small opacity-75">Информационный проект о буднях столичного гарнизона. Учебная работа (КР №2).</p>
+                </div>
+                <div class="col-12 col-md-6 text-md-end">
+                    <a href="catalog.html" class="me-3">Направления</a>
+                    <a href="contacts.html" class="text-warning">Контакты</a>
+                </div>
+            </div>
+            <hr class="border-secondary mt-4">
+            <div class="text-center small opacity-50">&copy; 2026 Спасатели Москвы. Все данные взяты из открытых источников.</div>
+        </div>
+    </footer>
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        (function () {
+            'use strict'
+            var form = document.getElementById('feedbackForm')
+            
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    event.preventDefault()
+                    document.getElementById('successMessage').classList.remove('d-none')
+                    form.reset()
+                    form.classList.remove('was-validated')
+                    return
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })()
+    </script>
+</body>
+</html>
