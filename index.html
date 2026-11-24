@@ -21,7 +21,9 @@
     <meta name="twitter:description" content="Узнайте, как устроена служба московских спасателей изнутри.">
     <meta name="twitter:image" content="https://saintlafree.github.io/kr2-bootstrap-shop-new/images/og-preview.jpg">
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Мой CSS -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -32,6 +34,7 @@
     <!-- Верхняя полоса с девизом -->
     <div class="mchs-top-line">Предотвращение &bull; Спасение &bull; Помощь</div>
 
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -52,26 +55,39 @@
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-12 col-lg-6 hero-text-animate">
-                    <h1 class="display-3 fw-bold mb-4">Будни столичного гарнизона</h1>
-                    <p class="lead mb-5 opacity-75" style="font-size: 1.2rem;">
-                        Московские спасатели и пожарные ежедневно обеспечивают безопасность более 13 миллионов жителей. Узнайте, как устроена служба изнутри.
-                    </p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a href="catalog.html" class="btn btn-orange btn-lg">Направления службы</a>
+    <!-- ЕДИНЫЙ ТЕМНЫЙ БЛОК (Шапка + 3D-Модель) -->
+    <div class="main-dark-wrapper">
+        
+        <!-- ШАПКА (HERO) -->
+        <header class="hero-section">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-12 col-lg-6 hero-text-animate">
+                        <h1 class="display-3 fw-bold mb-4">Будни столичного гарнизона</h1>
+                        <p class="lead mb-5 opacity-75" style="font-size: 1.2rem;">
+                            Московские спасатели и пожарные ежедневно обеспечивают безопасность более 13 миллионов жителей. Узнайте, как устроена служба изнутри.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="catalog.html" class="btn btn-orange btn-lg">Направления службы</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 text-center hero-img-animate">
+                        <img src="images/hero.jpg" alt="Спасатели Москвы" class="hero-img">
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 text-center hero-img-animate">
-                    <img src="images/hero.jpg" alt="Спасатели Москвы" class="hero-img">
-                </div>
             </div>
-        </div>
-    </header>
+        </header>
+
+        <!-- СЕКЦИЯ НАСТОЯЩЕЙ 3D-МОДЕЛИ -->
+        <section class="emblem-section" style="padding: 2rem 0 4rem 0; display: flex; justify-content: center; align-items: center;">
+            <div id="3d-container" style="width: 100%; height: 450px; position: relative;"></div>
+        </section>
+
+    </div>
+    <!-- КОНЕЦ ЕДИНОГО ТЕМНОГО БЛОКА -->
 
     <main class="flex-grow-1 py-5">
+        <!-- Блок статистики -->
         <section class="container mb-5 pb-4">
             <div class="text-center mb-5 reveal">
                 <h2 class="fw-bold" style="color: var(--mchs-blue);">Служба в цифрах</h2>
@@ -134,6 +150,7 @@
             </div>
         </section>
 
+        <!-- Основные направления -->
         <section class="container mb-5 pb-5">
             <div class="d-flex justify-content-between align-items-end mb-4 reveal">
                 <div>
@@ -177,6 +194,7 @@
         </section>
     </main>
 
+    <!-- Футер -->
     <footer class="mt-auto">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -194,10 +212,101 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- СКРИПТЫ ДЛЯ 3D-МОДЕЛИ (THREE.JS) -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        const container = document.getElementById('3d-container');
+        
+        // Если контейнера нет (на других страницах), пропускаем
+        if (container) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 0, 5);
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Освещение
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+            dirLight.position.set(5, 5, 5);
+            scene.add(dirLight);
+            
+            const fillLight = new THREE.DirectionalLight(0xff6b00, 1); // Оранжевая подсветка сзади
+            fillLight.position.set(-5, 0, -5);
+            scene.add(fillLight);
+
+            let model3d;
+            const loader = new GLTFLoader();
+
+            // Загружаем файл. Убедись, что он лежит в images/emblem.glb
+            loader.load(
+                'images/emblem.glb', 
+                function (gltf) {
+                    model3d = gltf.scene;
+                    
+                    // Автоматическое масштабирование под размер контейнера
+                    const box = new THREE.Box3().setFromObject(model3d);
+                    const size = box.getSize(new THREE.Vector3()).length();
+                    const center = box.getCenter(new THREE.Vector3());
+                    
+                    model3d.position.x += (model3d.position.x - center.x);
+                    model3d.position.y += (model3d.position.y - center.y);
+                    model3d.position.z += (model3d.position.z - center.z);
+                    
+                    const scale = 3 / size;
+                    model3d.scale.set(scale, scale, scale);
+
+                    scene.add(model3d);
+                },
+                undefined,
+                function (error) {
+                    console.error('Ошибка загрузки 3D-модели:', error);
+                    container.innerHTML = '<div style="color: #a0a0a0; text-align: center; padding-top: 100px;">Модель не найдена.<br>Убедитесь, что файл images/emblem.glb существует.</div>';
+                }
+            );
+
+            // Анимация вращения
+            function animate() {
+                requestAnimationFrame(animate);
+                if (model3d) {
+                    model3d.rotation.y += 0.005; // Скорость вращения
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Адаптивность
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+    </script>
+
+    <!-- ОСТАЛЬНЫЕ СКРИПТЫ (Цифры, кнопка наверх, прокрутка) -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Фишка 2: Анимация цифр
+            // Анимация цифр
             const counters = document.querySelectorAll('.counter');
             const animateCounter = (counter) => {
                 const target = +counter.getAttribute('data-target');
@@ -226,7 +335,7 @@
             }, { threshold: 0.5 });
             counters.forEach(counter => counterObserver.observe(counter));
 
-            // Фишка 3: Кнопка наверх
+            // Кнопка наверх
             const backToTopBtn = document.createElement('button');
             backToTopBtn.innerHTML = '↑';
             backToTopBtn.className = 'back-to-top';
@@ -240,7 +349,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // Фишка 4: Индикатор прокрутки
+            // Индикатор прокрутки
             const progressBar = document.getElementById('scrollProgress');
             window.addEventListener('scroll', () => {
                 const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -249,7 +358,7 @@
                 progressBar.style.width = scrollPercent + '%';
             });
 
-            // Фишка 5: Анимация появления (Scroll Reveal)
+            // Появление блоков
             const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
